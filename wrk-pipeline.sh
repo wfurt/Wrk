@@ -1,17 +1,20 @@
 #!/bin/sh
 
-url = $1
+url=$1
 
-if [ "$url" == ""  ]; then
+if [ "$url" = ""  ]; then
   echo "wrk-pipeline.sh url [connections]"
   exit 1
 fi
 
-connections = $2
+connections=$2
 
-if [ "$connections" == "" ]; then
-  connections = 256
+if [ "$connections" = "" ]; then
+  connections=256
 fi
+
+# echo on
+set -x
 
 wrk \
   -H 'Host: localhost' \
