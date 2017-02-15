@@ -1,0 +1,27 @@
+#!/bin/sh
+
+url = $1
+
+if [ "$url" == ""  ]; then
+  echo "wrk-pipeline.sh url [connections]"
+  exit 1
+fi
+
+connections = $2
+
+if [ "$connections" == "" ]; then
+  connections = 256
+fi
+
+wrk \
+  -H 'Host: localhost' \
+  -H 'Accept: text/plain,text/html;q=0.9,application/xhtml+xml;q=0.9,application/xml;q=0.8,*/*;q=0.7' \
+  -H 'Connection: keep-alive' \
+  --latency \
+  -d 15 \
+  -c $connections \
+  --timeout 8 \
+  -t 32 \
+  $url \
+  -s ~/pipeline.lua \
+  -- 16
