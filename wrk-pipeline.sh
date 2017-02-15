@@ -1,16 +1,16 @@
 #!/bin/sh
 
-url = $1
-
-if [ "$url" == ""  ]; then
+if [ "$1" == ""  ]; then
   echo "wrk-pipeline.sh url [connections]"
   exit 1
 fi
 
-connections = $2
+url = $1
 
-if [ "$connections" == "" ]; then
+if [ "$2" == "" ]; then
   connections = 256
+else
+  connections = $2;
 fi
 
 wrk \
