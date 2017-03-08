@@ -3,11 +3,17 @@
 url=$1
 
 if [ "$url" = ""  ]; then
-  echo "wrk-pipeline.sh url [connections]"
+  echo "wrk.sh url [-p] [connections]"
   exit 1
 fi
 
-connections=$2
+if [ "$2" = "-p" ]; then
+  pipeline="-s `dirname $0`/pipeline.lua -- 16"
+  connections=$3
+else
+  pipeline=
+  connections=$2
+fi
 
 if [ "$connections" = "" ]; then
   connections=256
@@ -26,5 +32,4 @@ wrk \
   --timeout 8 \
   -t 32 \
   $url \
-  -s `dirname $0`/pipeline.lua \
-  -- 16
+  $pipeline
