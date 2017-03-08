@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 url=$1
 
@@ -26,5 +26,5 @@ wrk \
   --timeout 8 \
   -t 32 \
   $url \
-  -s ~/pipeline.lua \
+  -s `dirname $0`/pipeline.lua \
   -- 16
