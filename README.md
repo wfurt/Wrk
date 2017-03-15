@@ -1,4 +1,18 @@
-# FrameworkBenchmarksWrk
+# Wrk
+
+## Usage
 ```
-wget https://raw.githubusercontent.com/mikeharder/FrameworkBenchmarksWrk/master/wrk-pipeline.sh && chmod 755 wrk-pipeline.sh
+$ git clone https://github.com/mikeharder/wrk
+$ ./wrk/wrk.sh
+wrk.sh url [-p] [connections]
+```
+
+## Non-Pipelined
+```
+$ ./wrk/wrk.sh http://server:port/path
+```
+
+## Pipelined (16 requests)
+```
+$ ./wrk/wrk.sh http://server:port/path -p
 ```
