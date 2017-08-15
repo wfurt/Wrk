@@ -19,7 +19,7 @@ transfer=[]
 for line in lines:
 	t, v = line.split()
 	if t == 'Transfer/sec:':
-	    transfer.append(float(v.split('.')[0]))
+	    transfer.append(float(v.split('M')[0]))
 	elif t == 'Requests/sec:':
 	    rps.append(float(v.split('.')[0]))
 	else:
@@ -32,5 +32,5 @@ rps_a = sum(rps)/len(rps)
 transfer_a = sum(transfer)/len(transfer)
 
 print "               avg    min    max    stdev"
-print "Reqs/s    : %6d %6d %6d %6d " % ( rps_a, min(rps), max(rps), stdev(rps))
-print "Transfer/s: %6d %6d %6d %6d " % ( transfer_a, min(transfer), max(transfer), stdev(transfer))
+print "Reqs/s    : %6d %6d %6d %6d %.2f%%" % ( rps_a, min(rps), max(rps), stdev(rps), (stdev(rps)/rps_a*100))
+print "Transfer/s: %6.2f %6.2f %6.2f %6.2f %.2f%%" % ( transfer_a, min(transfer), max(transfer), stdev(transfer), stdev(transfer)/transfer_a*100)
